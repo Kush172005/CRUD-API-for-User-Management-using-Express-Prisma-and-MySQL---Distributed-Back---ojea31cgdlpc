@@ -74,11 +74,9 @@ app.post("/api/auth/login", async (req, res) => {
             return res.status(401).json({ error: "Invalid credentials" });
         }
 
-        const accessToken = jsonwebtoken.sign(
-            { userId: user.id, name: user.name, email: user.email },
-            JWT_SECRET,
-            { expiresIn: "1d" }
-        );
+        const accessToken = jsonwebtoken.sign({ user }, JWT_SECRET, {
+            expiresIn: "1d",
+        });
 
         res.status(200).json({
             userdata: {
