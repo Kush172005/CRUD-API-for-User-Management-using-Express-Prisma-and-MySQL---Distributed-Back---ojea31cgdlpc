@@ -75,7 +75,7 @@ app.post("/api/auth/login", async (req, res) => {
         }
 
         const accessToken = jsonwebtoken.sign(
-            { id: user.id, email: user.email },
+            { userId: user.id, name: user.name, email: user.email },
             JWT_SECRET,
             { expiresIn: "1d" }
         );
